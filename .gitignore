@@ -1,0 +1,7 @@
+
+***/COLCON_IGNORE
+
+# Python
+*.pyc
+__pycache__/
+s
