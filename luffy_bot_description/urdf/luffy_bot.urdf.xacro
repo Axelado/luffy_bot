@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="luffy_bot">
+  <xacro:arg name="sim_mode" default="false"/>
+
+  <xacro:include filename="luffy_bot_macro.xacro" />
+  <xacro:include filename="gazebo_sensors.xacro" />
+
+
+  <xacro:luffy_bot/>
+</robot>

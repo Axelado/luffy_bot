@@ -1,0 +1,118 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+    <xacro:include filename="sensor_params.xacro" />
+
+    <gazebo reference="laser_link">
+        <material>Gazebo/Black</material>
+        <sensor name="laser" type="gpu_lidar">
+            <always_on>true</always_on>
+            <pose>0 0 0 0 0 0</pose>
+            <visualize>true</visualize>
+            <update_rate>${laser_update_rate}</update_rate>
+            <lidar>
+                <scan>
+                    <horizontal>
+                        <samples>${laser_samples}</samples>
+                        <min_angle>${laser_min_angle}</min_angle>
+                        <max_angle>${laser_max_angle}</max_angle>
+                    </horizontal>
+                </scan>
+                <range>
+                    <min>${laser_range_min}</min>
+                    <max>${laser_range_max}</max>
+                </range>
+            </lidar>
+            <topic>scan</topic>
+            <gz_frame_id>laser_link</gz_frame_id>
+        </sensor>
+    </gazebo>
+
+    <gazebo reference="head_camera_rgb_frame">
+        <sensor name="rgb_camera" type="camera">
+            <pose>0 0 0 0 0 0</pose>
+            <visualize>true</visualize>
+            <update_rate>${rgb_update_rate}</update_rate>
+            <camera>
+                <!-- Horizontal FOV: 54 degrees = 0.9424778 rad -->
+                <horizontal_fov>${rgb_hfov}</horizontal_fov>
+                <image>
+                    <format>R8G8B8</format>
+                    <width>${rgb_width}</width>
+                    <height>${rgb_height}</height>
+                </image>
+                <clip>
+                    <near>${rgb_clip_near}</near>
+                    <far>${rgb_clip_far}</far>
+                </clip>
+                <noise>
+                    <type>gaussian</type>
+                    <mean>${rgb_noise_mean}</mean>
+                    <stddev>${rgb_noise_stddev}</stddev>
+                </noise>
+
+            </camera>
+            <topic>head_camera/rgb_camera/image</topic>
+            <camera_info_topic>head_camera/rgb_camera/camera_info</camera_info_topic>
+            <gz_frame_id>head_camera_rgb_optical_frame</gz_frame_id>
+        </sensor>
+    </gazebo>
+
+    <!-- Depth camera for Gazebo (RGB-D style: separate color and depth settings) -->
+    <gazebo reference="head_camera_depth_optical_frame">
+        <sensor name="depth_camera" type="rgbd_camera">
+            <pose>0 0 0 0 0 0</pose>
+            <always_on>1</always_on>
+            <visualize>true</visualize>
+            <update_rate>${depth_update_rate}</update_rate>
+            <camera name="depth_camera">
+                <horizontal_fov>${depth_hfov}</horizontal_fov>
+                <image>
+                    <width>${depth_width}</width>
+                    <height>${depth_height}</height>
+                </image>
+                <clip>
+                    <near>${depth_clip_near}</near>
+                    <far>${depth_clip_far}</far>
+                </clip>
+                <noise>
+                    <type>gaussian</type>
+                    <mean>${depth_noise_mean}</mean>
+                    <stddev>${depth_noise_stddev}</stddev>
+                </noise>
+            </camera>
+
+            <topic>head_camera/depth_camera/depth_image</topic>
+            <camera_info_topic>head_camera/depth_camera/camera_info</camera_info_topic>
+            <gz_frame_id>head_camera_depth_optical_frame</gz_frame_id>
+        </sensor>
+    </gazebo>
+
+
+
+    <gazebo reference="head_camera_rgb_frame">
+        <sensor name="segmentation_camera" type="segmentation">
+            <pose>0 0 0 0 0 0</pose>
+            <visualize>true</visualize>
+            <update_rate>${seg_update_rate}</update_rate>
+            <camera>
+                <!-- Match RGB horizontal FOV -->
+                <horizontal_fov>${seg_hfov}</horizontal_fov>
+                <image>
+                    <width>${seg_width}</width>
+                    <height>${seg_height}</height>
+                </image>
+                <clip>
+                    <near>${seg_clip_near}</near>
+                    <far>${seg_clip_far}</far>
+                </clip>
+            </camera>
+            <always_on>1</always_on>
+            <topic>head_camera/rgb_camera/semantic</topic> 
+            <gz_frame_id>head_camera_rgb_optical_frame</gz_frame_id>
+        </sensor>
+    </gazebo>
+
+
+</robot>
+
+

@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+  <!-- Laser parameters -->
+  <xacro:property name="laser_update_rate" value="10.0"/>
+  <xacro:property name="laser_samples" value="720"/>
+  <!-- Laser covers 220 degrees total: -110deg..+110deg -->
+  <xacro:property name="laser_min_angle" value="-1.9198621771937625"/>
+  <xacro:property name="laser_max_angle" value="1.9198621771937625"/>
+  <xacro:property name="laser_range_min" value="0.1"/>
+  <xacro:property name="laser_range_max" value="25.0"/>
+
+  <!-- RGB camera parameters -->
+  <xacro:property name="rgb_update_rate" value="6.0"/>
+  <xacro:property name="rgb_hfov" value="0.9424778"/>
+  <xacro:property name="rgb_width" value="1280"/>
+  <xacro:property name="rgb_height" value="960"/>
+  <xacro:property name="rgb_clip_near" value="0.1"/>
+  <xacro:property name="rgb_clip_far" value="100"/>
+  <xacro:property name="rgb_noise_mean" value="0"/>
+  <xacro:property name="rgb_noise_stddev" value="0.1"/>
+
+  <!-- Depth camera parameters -->
+  <xacro:property name="depth_update_rate" value="3.0"/>
+  <xacro:property name="depth_hfov" value="0.9424778"/>
+  <xacro:property name="depth_width" value="640"/>
+  <xacro:property name="depth_height" value="480"/>
+  <xacro:property name="depth_clip_near" value="0.35"/>
+  <xacro:property name="depth_clip_far" value="3.0"/>
+  <xacro:property name="depth_noise_mean" value="0"/>
+  <xacro:property name="depth_noise_stddev" value="0.1"/>
+
+  <!-- Segmentation camera parameters -->
+  <xacro:property name="seg_update_rate" value="3.0"/>
+  <xacro:property name="seg_hfov" value="0.9424778"/>
+  <xacro:property name="seg_width" value="1280"/>
+  <xacro:property name="seg_height" value="960"/>
+  <xacro:property name="seg_clip_near" value="0.1"/>
+  <xacro:property name="seg_clip_far" value="100"/>
+</robot>
