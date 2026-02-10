@@ -41,6 +41,19 @@ ros2 launch luffy_bot_description rsp.launch.py
 ros2 launch luffy_bot_gz launch_sim.launch.py
 ```
 
+## Pre-commit setup (after cloning)
+
+To enable automatic code formatting and linting on commit, set up pre-commit hooks:
+
+```bash
+python3 -m pip install --upgrade pip
+pip install pre-commit black isort flake8 yamllint
+pre-commit install
+pre-commit run --all-files
+```
+
+This ensures all contributors use the same code style and catch errors before pushing.
+
 ## Notes
 
 - The robot is based on the Fetch URDF and has been adapted and modernized.
