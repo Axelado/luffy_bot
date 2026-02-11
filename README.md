@@ -15,16 +15,34 @@ with ROS 2 and Gazebo Harmonic.
 - `luffy_bot_description`: robot description (URDF/Xacro, meshes, RViz)
 - `luffy_bot_gz`: Gazebo Harmonic simulation, bridge and configuration files
 
-## Prerequisites
 
-- ROS 2 Jazzy
-- Gazebo Harmonic
-- `colcon`
+## Workspace setup
+
+If you don't already have a ROS 2 workspace, create one:
+
+
+```bash
+mkdir -p ~/ros_ws/src
+cd ~/ros_ws/src
+# Clone this repository here, or copy the luffy_bot folder into src
+```
+
+## Install dependencies with rosdep
+
+
+From the root of your workspace (where `src` is):
+
+```bash
+cd ~/ros_ws
+rosdep update
+rosdep install --from-paths src --ignore-src -r -y
+```
 
 ## Build
 
+
 ```bash
-cd ~/ROS/pizi_ws
+cd ~/ros_ws
 colcon build --symlink-install
 source install/setup.bash
 ```
